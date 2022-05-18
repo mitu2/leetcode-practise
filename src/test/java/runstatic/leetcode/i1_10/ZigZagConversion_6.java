@@ -1,5 +1,6 @@
 package runstatic.leetcode.i1_10;
 
+import runstatic.leetcode.annotation.TODO;
 import runstatic.leetcode.annotation.Wrong;
 
 /**
@@ -85,13 +86,84 @@ public class ZigZagConversion_6 {
         return sb;
     }
 
+    public String convert2(String s, int numRows) {
+        int len = s.length();
+        char[] chars = s.toCharArray();
+        int spec = Math.max(0, numRows - 2);
+        int dis = spec + numRows;
+        int exceed = len % (numRows + spec);
+        boolean isLessRow = exceed < numRows;
+        boolean isExceed = exceed != 0;
+        int size = len / (numRows + spec);
+
+        StringBuilder sb = new StringBuilder();
+        for (int row = 0; row < numRows; row++) {
+            boolean isFirst = row == 0;
+            boolean isEnd = row == numRows - 1;
+            int colFrom = size;
+            if (!(isEnd || isFirst)) {
+                colFrom += size;
+            }
+            boolean isSpecialRow = row < spec;
+            if (isExceed) {
+                if (isLessRow) {
+                    if (isSpecialRow) {
+                        colFrom += 1;
+                    }
+                } else {
+                    if (numRows - row > spec) {
+                        colFrom += 1;
+                    }
+                }
+            } else {
+                colFrom -= 1;
+            }
+//            System.out.println(dis);
+
+            boolean b = isSpecialRow;
+            for (int col = 0, preIndex = row; col < colFrom; col++) {
+                if (col == 0) {
+                    sb.append(chars[row]);
+                    continue;
+                }
+
+                if(isFirst || isEnd) {
+                    sb.append(chars[col * dis]);
+                    continue;
+                }
+                if(row == 1 && numRows == 3) {
+                    sb.append(chars[preIndex += 2]);
+                    continue;
+                }
+
+                if(b) {
+                    sb.append(chars[preIndex += numRows]);
+                } else {
+                    sb.append(chars[preIndex += spec]);
+                }
+                b = !b;
+
+
+//                int index = row + (i * col) + (col == 0 ? 0 : (col == colFrom - 1) ? 2 : 1);
+//                System.out.printf("row %s col %s [i %s] index %s%n", row, col, i, index);
+//                sb.append(chars[index]);
+            }
+        }
+
+
+        return sb.toString();
+    }
+
+    @TODO("跳过了")
     public static void main(String[] args) {
         ZigZagConversion_6 instance = new ZigZagConversion_6();
         /**
          * A 00   0
          * E 01 3 4
+         * PAHNAPLSIIGYIR
+         *
          */
-        System.out.println(instance.convert("PAYPALISHIRING", 3));
+        System.out.println(instance.convert2("PAYPALISHIRING", 3));
     }
 
 }
