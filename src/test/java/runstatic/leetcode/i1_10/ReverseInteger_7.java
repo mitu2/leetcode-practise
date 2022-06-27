@@ -50,4 +50,8 @@ public class ReverseInteger_7 {
 //        System.out.println(Integer.toBinaryString(10));
     }
 
+    public static void main(String[] args) {
+        new ReverseInteger_7().doTest();
+    }
+
 }
