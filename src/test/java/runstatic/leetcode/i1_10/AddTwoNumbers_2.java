@@ -1,28 +1,12 @@
 package runstatic.leetcode.i1_10;
 
 import com.google.gson.Gson;
+import runstatic.leetcode.entity.ListNode;
 
 /**
  * @author chenmoand
  */
 public class AddTwoNumbers_2 {
-
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode() {
-        }
-
-        ListNode(int val) {
-            this.val = val;
-        }
-
-        ListNode(int val, ListNode next) {
-            this.val = val;
-            this.next = next;
-        }
-    }
 
 
     /**
