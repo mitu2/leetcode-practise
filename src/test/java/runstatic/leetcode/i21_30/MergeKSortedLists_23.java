@@ -5,7 +5,6 @@ import runstatic.leetcode.annotation.TODO;
 import runstatic.leetcode.entity.ListNode;
 import runstatic.leetcode.util.ListNodeUtil;
 
-import java.util.Arrays;
 
 /**
  * @author chenmoand
@@ -15,33 +14,29 @@ public class MergeKSortedLists_23 {
     @TODO("性能渣渣")
     public ListNode mergeKLists(ListNode[] lists) {
         ListNode root = null, cur = null;
-        ListNode minNode = null;
-        int minIndex = 0;
+        int minIndex = -1;
         while (true) {
-            minNode = null;
-            minIndex = 0;
+            minIndex = -1;
             loop: for (int i = 0; i < lists.length; i++) {
                 ListNode node = lists[i];
                 if (node == null) {
                     continue loop;
                 }
-                if (minNode == null) {
-                    minNode = node;
+                if (minIndex == -1) {
                     minIndex = i;
                 } else {
-                    if (node.val < minNode.val) {
-                        minNode = node;
+                    if (node.val < lists[minIndex].val) {
                         minIndex = i;
                     }
                 }
             }
-            if (minNode == null) {
+            if (minIndex == -1) {
                 return root;
             }
             if (root == null) {
-                cur = root = new ListNode(minNode.val);
+                cur = root = new ListNode(lists[minIndex].val);
             } else {
-                cur = cur.next = new ListNode(minNode.val);
+                cur = cur.next = new ListNode(lists[minIndex].val);
             }
             if(lists[minIndex] != null) {
                 lists[minIndex] = lists[minIndex].next;
