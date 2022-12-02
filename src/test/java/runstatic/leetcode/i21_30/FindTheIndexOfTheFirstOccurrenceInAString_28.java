@@ -10,7 +10,7 @@ import java.util.Arrays;
  */
 public class FindTheIndexOfTheFirstOccurrenceInAString_28 {
     public int strStr(String haystack, String needle) {
-        // note: String#indexOf(needle)
+        // note: String#indexOf(needle) 最快捷的实现方式
         // return haystack.indexOf(needle);
         if (haystack.length() < needle.length()) {
             return -1;
