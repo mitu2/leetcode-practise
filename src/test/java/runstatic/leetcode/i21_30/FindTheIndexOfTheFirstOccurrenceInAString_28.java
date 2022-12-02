@@ -26,7 +26,6 @@ public class FindTheIndexOfTheFirstOccurrenceInAString_28 {
             if (Arrays.equals(haystackChars, index, index + spec, needleChars, 0, spec)) {
                 return index;
             }
-            System.out.println(index);
             ++index;
         }
         return -1;
