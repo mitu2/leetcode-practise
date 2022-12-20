@@ -8,7 +8,7 @@ import java.util.Arrays;
 /**
  * @author chenmoand
  */
-public class NextPermutation_30 {
+public class NextPermutation_31 {
 
     /**
      * 1 2 3 4
