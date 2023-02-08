@@ -1,6 +1,8 @@
 package runstatic.leetcode.outher;
 
+import org.testng.annotations.Test;
 import runstatic.leetcode.entity.ListNode;
+import runstatic.leetcode.util.ListNodeUtil;
 
 /**
  * @author chenmoand
@@ -22,6 +24,27 @@ public class NodeReverseList {
             root = root.next;
         }
         return result;
+    }
+
+
+    public ListNode reverseList2(ListNode root) {
+        ListNode cur = root;
+        ListNode nx = cur.next;
+        cur.next = null;
+        while (nx != null) {
+            ListNode next = nx.next;
+            nx.next = cur;
+            cur = nx;
+            nx = next;
+        }
+
+
+        return cur;
+    }
+
+    @Test
+    public void testCase() {
+        System.out.println(reverseList2(ListNodeUtil.parse("1,2,3,4,5")));
     }
 
 }
